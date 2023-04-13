@@ -7,10 +7,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000; // Porta do servidor, você pode alterar para qualquer valor 
-const valorBoll = false
+let name;
+let school;
 app.post('/api/boolean', (req, res) => {
 // Obtém o valor booleano do corpo da requisição
   const {valor, nomeEscola} = req.body;
+
+ name = valor;
+ school = nomeEscola
 
   if (typeof valor === 'boolean') {
     if (valor) {
@@ -24,11 +28,8 @@ app.post('/api/boolean', (req, res) => {
   }
 });
 
-
-valorBoll; // Variável para armazenar o valor booleano
-
 app.get('/api/boolean', (req, res) => {
-  res.json({ valor: valorBoll });
+  res.json({ valor: name || "", escolar: school || "" });
 });
 
 
